@@ -1,30 +1,32 @@
-package com.sec.sso;
+package com.sec.sso.config.security;
 
+import com.sec.sso.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Primary
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    //temporary
+    private UserService userService;
+
     @Autowired
-    BCryptPasswordEncoder encoder;
+    public UserDetailsServiceImpl(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails applicationUser = User.withUsername("user").password(encoder.encode("user")).roles("ROLE").build();
+        com.sec.sso.model.User applicationUser = userService.findByLogin(username);
         if (applicationUser == null) {
             throw new UsernameNotFoundException(username);
         }
         return new org.springframework.security.core.userdetails.User
-                (applicationUser.getUsername(), applicationUser.getPassword()
+                (applicationUser.getLogin(), applicationUser.getPassword()
                         , applicationUser.getAuthorities());
     }
 }
