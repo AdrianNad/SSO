@@ -11,7 +11,9 @@ public class ResourceConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/**")
+
+        http
+                .antMatcher("/**")
                 .authorizeRequests()
                 .antMatchers("/", "/login**")
                 .permitAll()
