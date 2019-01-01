@@ -16,7 +16,7 @@ public class ResourceConfig extends WebSecurityConfigurerAdapter {
         http
                 .antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/", "/login**")
+                .antMatchers("/", "/index**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
