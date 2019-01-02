@@ -4,7 +4,6 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,5 +17,5 @@ public class User {
     @Indexed(unique = true)
     private String login;
     private String password;
-    List<? extends GrantedAuthority> authorities = new ArrayList<>();
+    List<UserRole> authorities = new ArrayList<>();
 }
