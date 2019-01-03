@@ -38,7 +38,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("password", "client_credentials", "authorization_code", "implicit")
                 .accessTokenValiditySeconds(3600)
                 .autoApprove(true)
-                .redirectUris("http://localhost:8081/login");
+                .redirectUris("http://localhost:8081/login", "http://localhost:8082/login");
 //                .and()
 //                .withClient("implicitId")
 //                .secret("implicitSecret")
