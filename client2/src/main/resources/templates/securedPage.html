@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Index</title>
+</head>
+<body>
+<h1>Spring Security SSO</h1>
+<div sec:authorize="isAuthenticated()">
+    <h1 th:text="'Welcome to App, ' + ${#authentication.name}"></h1>
+</div>
+<div sec:authorize="hasAuthority('CLIENT1_USER_ROLE')">
+    <h1>You are user</h1>
+</div>
+<div sec:authorize="hasAuthority('CLIENT2_ADMIN_ROLE')">
+    <h1>You are admin</h1>
+</div>
+</body>
+</html>
