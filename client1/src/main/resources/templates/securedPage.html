@@ -15,5 +15,8 @@
 <div sec:authorize="hasAuthority('CLIENT2_ADMIN_ROLE')">
     <h1>You are admin</h1>
 </div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout"/>
+</form>
 </body>
 </html>
