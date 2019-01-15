@@ -1,5 +1,7 @@
-package com.sec.client1;
+package com.sec.client1.config;
 
+import com.sec.client1.config.filter.CsrfFilter;
+import com.sec.client1.config.filter.TokenExpirationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;

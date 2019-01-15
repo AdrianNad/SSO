@@ -1,4 +1,4 @@
-package com.sec.client2;
+package com.sec.client2.config.filter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;

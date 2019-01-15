@@ -12,7 +12,7 @@
 <div sec:authorize="hasAuthority('CLIENT1_USER_ROLE')">
     <h1>You are user</h1>
 </div>
-<div sec:authorize="hasAuthority('CLIENT2_ADMIN_ROLE')">
+<div sec:authorize="hasAuthority('CLIENT1_ADMIN_ROLE')">
     <h1>You are admin</h1>
 </div>
 <form th:action="@{/logout}" method="post">
