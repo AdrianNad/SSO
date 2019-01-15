@@ -1,6 +1,7 @@
 package com.sec.client2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -21,8 +22,9 @@ public class CsrfFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        if(request.getRequestURI().equals("/logout") && this.csrfTokenRepository.loadToken(request) == null) {
-            request.setAttribute(HttpServletResponse.class.getName(), response);
+        request.setAttribute(HttpServletResponse.class.getName(), response);
+        CsrfToken csrfToken = this.csrfTokenRepository.loadToken(request);
+        if (request.getRequestURI().equals("/logout") && csrfToken == null) {
             response.sendRedirect("/index");
         } else {
             filterChain.doFilter(request, response);
